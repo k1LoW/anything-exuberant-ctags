@@ -119,6 +119,10 @@
 ;;    The limit level of directory that search tag file.
 ;;    default = 10
 
+;;; TODO
+;;
+;;      Select scope search
+
 ;;; Require
 (require 'anything)
 
