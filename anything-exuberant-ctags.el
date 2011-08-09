@@ -167,6 +167,11 @@ Don't search line longer if outside this value."
   :type 'number
   :group 'anything-exuberant-ctags)
 
+(defcustom anything-exuberant-ctags-candidate-number-limit 10000
+  "The limit level of candidate in anything-c-source-exuberant-ctags-select."
+  :type 'number
+  :group 'anything-exuberant-ctags)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Variable ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defvar anything-exuberant-ctags-tag-file-dir nil
   "Exuberant ctags file directory.")
@@ -362,9 +367,20 @@ And switch buffer and jump tag position.."
     (candidates-in-buffer)
     (get-line . anything-exuberant-ctags-get-line)
     (action ("Goto the location" . anything-exuberant-ctags-goto-location))
+    (candidate-number-limit . anything-exuberant-ctags-candidate-number-limit)
     (candidate-transformer .
                            (lambda (candidates)
                              (anything-exuberant-ctags-transformer candidates)))))
+
+(defun anything-exuberant-ctags-kill-line-head-white-space ()
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (while (not (eobp))
+      (back-to-indentation)
+      (kill-line 0)
+      (forward-line 1))))
+
 
 (provide 'anything-exuberant-ctags)
 ;;; anything-exuberant-ctags.el ends here
