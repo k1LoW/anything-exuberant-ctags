@@ -372,15 +372,5 @@ And switch buffer and jump tag position.."
                            (lambda (candidates)
                              (anything-exuberant-ctags-transformer candidates)))))
 
-(defun anything-exuberant-ctags-kill-line-head-white-space ()
-  (interactive)
-  (save-excursion
-    (goto-char (point-min))
-    (while (not (eobp))
-      (back-to-indentation)
-      (kill-line 0)
-      (forward-line 1))))
-
-
 (provide 'anything-exuberant-ctags)
 ;;; anything-exuberant-ctags.el ends here
