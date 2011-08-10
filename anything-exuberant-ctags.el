@@ -6,7 +6,7 @@
 ;; Maintainer: Kenichirou Oyama <k1lowxb@gmail.com>
 ;; Copyright (C) 2011, 101000code/101000LAB, all rights reserved.
 ;; Created: 2011-08-09
-;; Version: 0.1.1
+;; Version: 0.1.2
 ;; URL:
 ;; Keywords: anything, exuberant ctags
 ;; Compatibility: GNU Emacs 23
@@ -121,6 +121,9 @@
 ;;  `anything-exuberant-ctags-line-length-limit'
 ;;    The limit level of line length.
 ;;    default = 400
+;;  `anything-exuberant-ctags-line-format-func'
+;;    The limit level of line length.
+;;    default = (\` anything-exuberant-ctags-line-format)
 
 ;;; Contributors:
 ;;
@@ -173,6 +176,12 @@ This value only use when option
   "The limit level of line length.
 Don't search line longer if outside this value."
   :type 'number
+  :group 'anything-exuberant-ctags)
+
+(defcustom anything-exuberant-ctags-line-format-func `anything-exuberant-ctags-line-format
+  "The limit level of line length.
+Don't search line longer if outside this value."
+  :type 'symbol
   :group 'anything-exuberant-ctags)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Variable ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -312,6 +321,7 @@ And switch buffer and jump tag position.."
 
 (defun anything-exuberant-ctags-transformer (tags)
   (let* (list
+         format-func
          (name-max-len 0)
          (path-max-len 0)
          (entries
@@ -337,17 +347,14 @@ And switch buffer and jump tag position.."
              (setq path-max-len (max path-max-len (length path)))
              (setq entry (list path name kind class tag))
              )) tags)))
+    (fset 'format-func (symbol-function anything-exuberant-ctags-line-format-func))
     (when (< anything-exuberant-ctags-max-length path-max-len)
       (setq path-max-len anything-exuberant-ctags-max-length))
     (loop for entry in entries
           do
           (push
            (cons
-            (format (format "%%%ds : %%-%ds [%%s]%%s" path-max-len name-max-len)
-                    (let ((path (car entry)))
-                      (if (< path-max-len (length path))
-                          (substring path (- path-max-len)) path))
-                    (cadr entry) (caddr entry) (cadddr entry))
+            (format-func entry path-max-len name-max-len)
             (nth 4 entry))
            list)
           finally (return (nreverse list)))))
@@ -362,6 +369,14 @@ And switch buffer and jump tag position.."
   (concat "Exuberant ctags in "
           (with-current-buffer anything-current-buffer
             (anything-exuberant-ctags-get-tag-file))))
+
+(defun anything-exuberant-ctags-line-format (entry path-max-len name-max-len)
+  "Format candidate line."
+  (format (format "%%%ds : %%-%ds [%%s]%%s" path-max-len name-max-len)
+          (let ((path (car entry)))
+            (if (< path-max-len (length path))
+                (substring path (- path-max-len)) path))
+          (cadr entry) (caddr entry) (cadddr entry)))
 
 (defvar anything-c-source-exuberant-ctags-select
   '((name . "Exuberant ctags")
