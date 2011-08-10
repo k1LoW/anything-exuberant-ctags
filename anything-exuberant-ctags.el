@@ -119,6 +119,11 @@
 ;;    The limit level of directory that search tag file.
 ;;    default = 10
 
+;;; Contributors:
+;;
+;;     mori_dev <mori.dev.asdf@gmail.com>
+;;
+
 ;;; TODO
 ;;
 ;;      Select scope search
