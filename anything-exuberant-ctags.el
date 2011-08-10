@@ -6,7 +6,7 @@
 ;; Maintainer: Kenichirou Oyama <k1lowxb@gmail.com>
 ;; Copyright (C) 2011, 101000code/101000LAB, all rights reserved.
 ;; Created: 2011-08-09
-;; Version: 0.1.0
+;; Version: 0.1.1
 ;; URL:
 ;; Keywords: anything, exuberant ctags
 ;; Compatibility: GNU Emacs 23
@@ -118,6 +118,9 @@
 ;;  `anything-exuberant-ctags-tag-file-search-limit'
 ;;    The limit level of directory that search tag file.
 ;;    default = 10
+;;  `anything-exuberant-ctags-line-length-limit'
+;;    The limit level of line length.
+;;    default = 400
 
 ;;; Contributors:
 ;;
@@ -169,11 +172,6 @@ This value only use when option
 (defcustom anything-exuberant-ctags-line-length-limit 400
   "The limit level of line length.
 Don't search line longer if outside this value."
-  :type 'number
-  :group 'anything-exuberant-ctags)
-
-(defcustom anything-exuberant-ctags-candidate-number-limit 10000
-  "The limit level of candidate in anything-c-source-exuberant-ctags-select."
   :type 'number
   :group 'anything-exuberant-ctags)
 
@@ -372,7 +370,7 @@ And switch buffer and jump tag position.."
     (candidates-in-buffer)
     (get-line . anything-exuberant-ctags-get-line)
     (action ("Goto the location" . anything-exuberant-ctags-goto-location))
-    (candidate-number-limit . anything-exuberant-ctags-candidate-number-limit)
+    (candidate-number-limit . 9999)
     (candidate-transformer .
                            (lambda (candidates)
                              (anything-exuberant-ctags-transformer candidates)))))
