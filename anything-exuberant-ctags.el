@@ -38,13 +38,13 @@
 ;; Some code referenced from anything-etags.el, anything-find-project-resources.el
 ;;
 ;; anything-find-project-resources.el
-;; Author: SAKURAI, Masashi <m.sakurai@kiwanami.net>
+;; SAKURAI, Masashi <m.sakurai@kiwanami.net>
 ;;
 ;; anything-etags.el
-;; Author: Kenichirou Oyama <k1lowxb@gmail.com>
-;;         Andy Stewart <lazycat.manatee@gmail.com>
-;;         rubikitch <rubikitch@ruby-lang.org>
-;;         Thierry Volpiatto <thierry.volpiatto@gmail.com>
+;; Kenichirou Oyama <k1lowxb@gmail.com>
+;; Andy Stewart <lazycat.manatee@gmail.com>
+;; rubikitch <rubikitch@ruby-lang.org>
+;; Thierry Volpiatto <thierry.volpiatto@gmail.com>
 
 ;;; Commentary:
 ;;
