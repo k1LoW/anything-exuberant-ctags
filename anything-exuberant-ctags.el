@@ -23,7 +23,7 @@
 
 ;; Filename: anything-exuberant-ctags.el
 ;; Description: Exuberant ctags anything.el interface
-;; Version: 0.1.2
+;; Version: DEV
 ;; Author: Kenichirou Oyama <k1lowxb@gmail.com>
 ;; URL: http://code.101000lab.org
 ;; Keywords: anything, exuberant ctags
