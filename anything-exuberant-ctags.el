@@ -23,15 +23,11 @@
 
 ;; Filename: anything-exuberant-ctags.el
 ;; Description: Exuberant ctags anything.el interface
-;; Author: Kenichirou Oyama <k1lowxb@gmail.com>
-;; Maintainer: Kenichirou Oyama <k1lowxb@gmail.com>
-;; Copyright (C) 2014, 101000code/101000LAB, all rights reserved.
-;; Created: 2011-08-09
 ;; Version: 0.1.2
+;; Author: Kenichirou Oyama <k1lowxb@gmail.com>
 ;; URL: http://code.101000lab.org
 ;; Keywords: anything, exuberant ctags
 ;; Package-Requires: ((anything "1.3.9"))
-;; Compatibility: GNU Emacs 23
 ;;
 ;; Features that might be required by this library:
 ;;
