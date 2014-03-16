@@ -21,8 +21,6 @@
 ;; the Free Software Foundation, Inc., 51 Franklin Street, Fifth
 ;; Floor, Boston, MA 02110-1301, USA.
 
-;; Filename: anything-exuberant-ctags.el
-;; Description: Exuberant ctags anything.el interface
 ;; Version: 0.1.2
 ;; Author: Kenichirou Oyama <k1lowxb@gmail.com>
 ;; URL: http://code.101000lab.org
@@ -399,4 +397,3 @@ And switch buffer and jump tag position.."
 
 (provide 'anything-exuberant-ctags)
 ;;; anything-exuberant-ctags.el ends here
-
