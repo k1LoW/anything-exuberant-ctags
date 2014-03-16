@@ -1,34 +1,8 @@
 ;;; anything-exuberant-ctags.el --- Exuberant ctags anything.el interface
 
-;; Filename: anything-exuberant-ctags.el
-;; Description: Exuberant ctags anything.el interface
-;; Author: Kenichirou Oyama <k1lowxb@gmail.com>
-;; Maintainer: Kenichirou Oyama <k1lowxb@gmail.com>
-;; Copyright (C) 2011, 101000code/101000LAB, all rights reserved.
-;; Created: 2011-08-09
-;; Version: 0.1.2
-;; URL:
-;; Keywords: anything, exuberant ctags
-;; Compatibility: GNU Emacs 23
-;;
-;; Features that might be required by this library:
-;;
-;; `anything'
-;;
+;; Copyright (C) 2011-2014 by 101000code/101000LAB
 
 ;;; This file is NOT part of GNU Emacs
-
-;;; Reference
-;; Some code referenced from anything-etags.el, anything-find-project-resources.el
-;;
-;; anything-find-project-resources.el
-;; Author: SAKURAI, Masashi <m.sakurai@kiwanami.net>
-;;
-;; anything-etags.el
-;; Author: Kenichirou Oyama <k1lowxb@gmail.com>
-;;         Andy Stewart <lazycat.manatee@gmail.com>
-;;         rubikitch <rubikitch@ruby-lang.org>
-;;         Thierry Volpiatto <thierry.volpiatto@gmail.com>
 
 ;;; License
 ;;
@@ -46,6 +20,35 @@
 ;; along with this program; see the file COPYING.  If not, write to
 ;; the Free Software Foundation, Inc., 51 Franklin Street, Fifth
 ;; Floor, Boston, MA 02110-1301, USA.
+
+;; Filename: anything-exuberant-ctags.el
+;; Description: Exuberant ctags anything.el interface
+;; Author: Kenichirou Oyama <k1lowxb@gmail.com>
+;; Maintainer: Kenichirou Oyama <k1lowxb@gmail.com>
+;; Copyright (C) 2014, 101000code/101000LAB, all rights reserved.
+;; Created: 2011-08-09
+;; Version: 0.1.2
+;; URL: http://code.101000lab.org
+;; Keywords: anything, exuberant ctags
+;; Package-Requires: ((anything "1.3.9"))
+;; Compatibility: GNU Emacs 23
+;;
+;; Features that might be required by this library:
+;;
+;; `anything'
+;;
+
+;;; Reference
+;; Some code referenced from anything-etags.el, anything-find-project-resources.el
+;;
+;; anything-find-project-resources.el
+;; Author: SAKURAI, Masashi <m.sakurai@kiwanami.net>
+;;
+;; anything-etags.el
+;; Author: Kenichirou Oyama <k1lowxb@gmail.com>
+;;         Andy Stewart <lazycat.manatee@gmail.com>
+;;         rubikitch <rubikitch@ruby-lang.org>
+;;         Thierry Volpiatto <thierry.volpiatto@gmail.com>
 
 ;;; Commentary:
 ;;
@@ -134,7 +137,8 @@
 ;;
 ;;      Select scope search
 
-;;; Require
+;;; Code:
+
 (require 'anything)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Customize ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -195,6 +199,8 @@ Don't search line longer if outside this value."
   "Max length for file path name.")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Interactive Functions ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;###autoload
 (defun anything-exuberant-ctags-select (&optional symbol-name)
   "Tag jump using `anything'.
 If SYMBOL-NAME is non-nil, jump tag position with SYMBOL-NAME."
@@ -213,23 +219,27 @@ If SYMBOL-NAME is non-nil, jump tag position with SYMBOL-NAME."
               initial-pattern "Find Tag: " nil)))
 ;;(anything '(anything-c-source-exuberant-ctags-select) nil "Find Tag: " nil)
 
+;;;###autoload
 (defun anything-exuberant-ctags-select-from-here ()
   "Tag jump with current symbol using `anything'."
   (interactive)
   (anything-exuberant-ctags-select (thing-at-point 'symbol)))
 
+;;;###autoload
 (defun anything-exuberant-ctags-enable-cache ()
   "Enable use tag file in cache directory."
   (interactive)
   (setq anything-exuberant-ctags-enable-tag-file-dir-cache t)
   (message "Enable Exuberant ctags file cache directory."))
 
+;;;###autoload
 (defun anything-exuberant-ctags-disable-cache ()
   "Disable use tag file in cache directory."
   (interactive)
   (setq anything-exuberant-ctags-enable-tag-file-dir-cache nil)
   (message "Disable exuberant-ctags file cache directory."))
 
+;;;###autoload
 (defun anything-exuberant-ctags-toggle-cache ()
   "Toggle tag file cache directory status."
   (interactive)
@@ -378,6 +388,7 @@ And switch buffer and jump tag position.."
                 (substring path (- path-max-len)) path))
           (cadr entry) (caddr entry) (cadddr entry)))
 
+;;;###autoload
 (defvar anything-c-source-exuberant-ctags-select
   '((name . "Exuberant ctags")
     (header-name . anything-source-exuberant-ctags-header-name)
@@ -392,3 +403,4 @@ And switch buffer and jump tag position.."
 
 (provide 'anything-exuberant-ctags)
 ;;; anything-exuberant-ctags.el ends here
+
